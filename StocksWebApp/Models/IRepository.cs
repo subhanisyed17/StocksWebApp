@@ -9,6 +9,12 @@ namespace StocksWebApp.Models
 	{
 		bool SaveCompanies(List<Company> companies);
 
-		CompanyQuote GetCompanyQuote(string symbol);
+		void SaveCompanyQuote(CompanyQuote companyQuote);
+
+		void SaveCompanyDetails(CompanyDetails companyDetails);
+
+		void SaveCompanyLatestDividend(List<CompanyDividend> companyDividend);
+
+		bool SaveFeedback(Feedback feedback);
 	}
 }

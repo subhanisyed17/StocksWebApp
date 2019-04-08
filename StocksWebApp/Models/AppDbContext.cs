@@ -16,5 +16,11 @@ namespace StocksWebApp.Models
 		public DbSet<Company> Companies { get; set; }
 
 		public DbSet<CompanyQuote> CompaniesQuote { get; set; }
+
+		public DbSet<CompanyDetails> CompanyDetails { get; set; }
+
+		public DbSet<CompanyDividend> CompanyDividend { get; set; }
+
+		public DbSet<Feedback> Feedback { get; set; }
 	}
 }

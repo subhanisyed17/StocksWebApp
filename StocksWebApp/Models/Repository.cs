@@ -19,17 +19,6 @@ namespace StocksWebApp.Models
 		public bool SaveCompanies(List<Company> companies)
 		{
 			bool anyNewRcordsInserted = false;
-			//foreach (Company c in companies)
-			//{
-			//	if (_appDbContext.Companies.Where(x => x.Symbol.Equals(c.Symbol)).Count() == 0)
-			//	{
-			//		_appDbContext.Companies.Add(c);
-			//		anyNewRcordsInserted = true;
-
-			//	}
-			//}
-	
-		
 			var missingRecords = from cs in companies
 								 join cd in _appDbContext.Companies
 									 on cs.Symbol equals cd.Symbol into pp
@@ -50,9 +39,61 @@ namespace StocksWebApp.Models
 			return anyNewRcordsInserted;
 		}
 
-		public CompanyQuote GetCompanyQuote(string symbol)
+		public void SaveCompanyQuote(CompanyQuote companyQuote)
 		{
-			return _appDbContext.CompaniesQuote.FirstOrDefault(x => x.Symbol == symbol);
+			_appDbContext.CompaniesQuote.Add(companyQuote);
+			_appDbContext.SaveChanges();
+		}
+
+		public void SaveCompanyDetails(CompanyDetails companyDetails)
+		{
+			CompanyDetails companyInfo = new CompanyDetails();
+
+			//when the records is missing insert in database
+			if (_appDbContext.CompanyDetails.Where(x => x.Symbol == companyDetails.Symbol).Count() == 0)
+			{
+				_appDbContext.CompanyDetails.Add(companyDetails);
+			}
+
+			// when the record is already present in database
+			companyInfo = _appDbContext.CompanyDetails.Where(x => x.Symbol == companyDetails.Symbol).FirstOrDefault();
+
+			// if record is found updating the column values with latest values obtained from API call.
+			if (
+				!companyInfo.CompanyName.Equals(companyDetails.CompanyName, StringComparison.OrdinalIgnoreCase) ||
+				!companyInfo.CEO.Equals(companyDetails.CEO, StringComparison.OrdinalIgnoreCase) ||
+				!companyInfo.Exchange.Equals(companyDetails.Exchange, StringComparison.OrdinalIgnoreCase)
+				)
+			{
+				companyInfo.CompanyName = companyDetails.CompanyName.Trim();
+				companyInfo.CEO = companyDetails.CEO.Trim();
+				companyInfo.Exchange = companyDetails.Exchange.Trim();
+
+			}
+			_appDbContext.SaveChanges();
+		}
+
+		public void SaveCompanyLatestDividend(List<CompanyDividend> companyDividend)
+		{
+			if (companyDividend != null && companyDividend.Count != 0)
+			{
+				foreach (CompanyDividend c in companyDividend)
+				{
+					_appDbContext.CompanyDividend.Add(c);
+				}
+				_appDbContext.SaveChanges();
+			}
+		}
+
+		public bool SaveFeedback(Feedback feedback)
+		{
+			bool isFeedbackSaved= false;
+			if (feedback != null)
+			{
+				_appDbContext.Feedback.Add(feedback);
+				isFeedbackSaved = true;
+			}
+			return isFeedbackSaved;
 		}
 	}
 }
