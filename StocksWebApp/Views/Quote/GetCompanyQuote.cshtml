@@ -1,0 +1,73 @@
+﻿@{
+	ViewData["Title"] = "GetCompanyInfo";
+}
+
+@model StocksWebApp.Models.CompanyQuote
+
+@{
+	Layout = "_Layout";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+	<meta name="viewport" content="width=device-width" />
+	<title>Index</title>
+	<style type="text/css">
+		body {
+			font-family: Arial;
+			font-size: 10pt;
+		}
+
+		table {
+			border: 1px solid #ccc;
+			border-collapse: collapse;
+			background-color: #fff;
+		}
+
+			table th {
+				background-color: #B8DBFD;
+				color: #333;
+				font-weight: bold;
+			}
+
+			table th, table td {
+				padding: 5px;
+				border: 1px solid #ccc;
+			}
+
+			table, table table td {
+				border: 0px solid #ccc;
+			}
+	</style>
+</head>
+<body>
+	<div>
+		<h4>Share Price of the Requested Company</h4>
+		<hr />
+		<table cellpadding="0" cellspacing="0">
+			<tr>
+				<th>CompanyName</th>
+				<th>StockOpeningPrice</th>
+				<th>StockClosingPrice</th>
+				<th>YesterdaysClosingPrice</th>
+				<th>MarketCap</th>
+			</tr>
+			<tr>
+				<td>@Model.companyname</td>
+				<td>@Model.open</td>
+				<td>@Model.close</td>
+				<td>@Model.previousClose</td>
+				<td>@Model.marketCap</td>
+			</tr>
+
+		</table>
+		<br />
+		<tr>
+
+		</tr>
+		<p>Prices shown are in dollars</p>
+	</div>
+</body>
+</html>

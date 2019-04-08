@@ -55,21 +55,24 @@ namespace StocksWebApp.Models
 				_appDbContext.CompanyDetails.Add(companyDetails);
 			}
 
-			// when the record is already present in database
-			companyInfo = _appDbContext.CompanyDetails.Where(x => x.Symbol == companyDetails.Symbol).FirstOrDefault();
+			//else
+			//{
+			//	// when the record is already present in database
+			//	companyInfo = _appDbContext.CompanyDetails.Where(x => x.Symbol == companyDetails.Symbol).FirstOrDefault();
 
-			// if record is found updating the column values with latest values obtained from API call.
-			if (
-				!companyInfo.CompanyName.Equals(companyDetails.CompanyName, StringComparison.OrdinalIgnoreCase) ||
-				!companyInfo.CEO.Equals(companyDetails.CEO, StringComparison.OrdinalIgnoreCase) ||
-				!companyInfo.Exchange.Equals(companyDetails.Exchange, StringComparison.OrdinalIgnoreCase)
-				)
-			{
-				companyInfo.CompanyName = companyDetails.CompanyName.Trim();
-				companyInfo.CEO = companyDetails.CEO.Trim();
-				companyInfo.Exchange = companyDetails.Exchange.Trim();
+			//	// if record is found updating the column values with latest values obtained from API call.
+			//	if (
+			//		!companyInfo.CompanyName.Equals(companyDetails.CompanyName, StringComparison.OrdinalIgnoreCase) ||
+			//		!companyInfo.CEO.Equals(companyDetails.CEO, StringComparison.OrdinalIgnoreCase) ||
+			//		!companyInfo.Exchange.Equals(companyDetails.Exchange, StringComparison.OrdinalIgnoreCase)
+			//		)
+			//	{
+			//		companyInfo.CompanyName = companyDetails.CompanyName.Trim();
+			//		companyInfo.CEO = companyDetails.CEO.Trim();
+			//		companyInfo.Exchange = companyDetails.Exchange.Trim();
 
-			}
+			//	}
+			//}
 			_appDbContext.SaveChanges();
 		}
 

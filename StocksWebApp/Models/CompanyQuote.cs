@@ -17,13 +17,13 @@ namespace StocksWebApp.Models
 		public string companyname { get; set; }
 		public string primaryexchange { get; set; }
 		public string sector { get; set; }
-		public decimal openingprice { get; set; }
-		public decimal closingprice { get; set; }
-		public decimal highestprice { get; set; }
-		public decimal lowestprice { get; set; }
+		public decimal open { get; set; }
+		public decimal close { get; set; }
+		public decimal high { get; set; }
+		public decimal low { get; set; }
 		public decimal latestprice { get; set; }
-		public decimal priviousclosingprice { get; set; }
+		public decimal previousClose { get; set; }
 		public bool IsStockAvailable { get; set; }
-		public decimal CompanyMarketCapitilization { get; set; }
+		public decimal marketCap { get; set; }
 	}
 }
