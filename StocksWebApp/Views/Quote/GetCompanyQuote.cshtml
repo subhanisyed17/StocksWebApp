@@ -1,5 +1,5 @@
 ﻿@{
-	ViewData["Title"] = "GetCompanyInfo";
+	ViewData["Title"] = "CompanyQuote";
 }
 
 @model StocksWebApp.Models.CompanyQuote
@@ -7,7 +7,6 @@
 @{
 	Layout = "_Layout";
 }
-
 <!DOCTYPE html>
 
 <html>
@@ -46,23 +45,32 @@
 	<div>
 		<h4>Share Price of the Requested Company</h4>
 		<hr />
-		<table cellpadding="0" cellspacing="0">
-			<tr>
-				<th>CompanyName</th>
-				<th>StockOpeningPrice</th>
-				<th>StockClosingPrice</th>
-				<th>YesterdaysClosingPrice</th>
-				<th>MarketCap</th>
-			</tr>
-			<tr>
-				<td>@Model.companyname</td>
-				<td>@Model.open</td>
-				<td>@Model.close</td>
-				<td>@Model.previousClose</td>
-				<td>@Model.marketCap</td>
-			</tr>
+        <table cellpadding="0" cellspacing="0">
+            <tr>
+                <th>CompanyName</th>
+                <th>StockOpeningPrice</th>
+                <th>StockClosingPrice</th>
+                <th>YesterdaysClosingPrice</th>
+                <th>MarketCap</th>
+            </tr>
+            @if (ViewBag.IsModelEmpty == true)
+            {
+                <tr>
+                    <td colspan="5">Company quote is not found</td>
+                </tr>
+            }
+           else
+            {
+                <tr>
+                    <td>@Model.companyname</td>
+                    <td>@Model.open</td>
+                    <td>@Model.close</td>
+                    <td>@Model.previousClose</td>
+                    <td>@Model.marketCap</td>
+                </tr>
+            }
 
-		</table>
+            </table>
 		<br />
 		<tr>
 

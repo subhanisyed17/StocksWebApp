@@ -1,20 +1,41 @@
 ﻿@{
-	ViewData["Title"] = "Index";
+    ViewData["Title"] = "CompanyDetails";
 }
 @{
-	Layout = "_Layout";
+    Layout = "_Layout";
 }
 <!DOCTYPE html>
 <html>
+<head>
+    <style type="text/css">
+        body {
+            font-family: Arial;
+            font-size: 10pt;
+        }
+    </style>
+</head>
 <body>
-	<form action="/Details/Index" method="post">
-		Company Symbol:
-		<br />
-		<br />
-		<input type="text" name="Symbol">
-		<br>
-		<br>
-		<input type="submit" value="GetCompanyDetails">
-	</form>
+    <div>
+        <p>
+            You can find out the basic information related to company by providing company trading symbol. You can find out company's trading symbol <a href="@Url.Action("Companies", "Home")" class="elements"><b><u>here</u></b></a>
+            <p>The basic information of company let's you know about</p>
+            <li>Who is CEO of the company</li>
+            <li>On which stock exchange the company does trading</li>
+            <li>Primary opearting sector of the company</li>
+        </p>
+    </div><br />
+    <form action="/Details/Index" method="post">
+        <b>Company Symbol:</b>
+        <br />
+        <br />
+        <input type="text" name="Symbol">
+        <br>
+        <br>
+        <div class="form-group">
+            <div class="col-md-offset-1">
+                <input type="submit" class="btn btn-primary" value="Get Details" />
+            </div>
+        </div>
+    </form>
 </body>
 </html>

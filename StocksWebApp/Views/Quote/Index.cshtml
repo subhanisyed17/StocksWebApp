@@ -1,20 +1,42 @@
 ﻿@{
-	ViewData["Title"] = "Index";
+	ViewData["Title"] = "CompanyQuote";
 }
 @{
 	Layout = "_Layout";
 }
 <!DOCTYPE html>
 <html>
+<head>
+    <style type="text/css">
+        body {
+            font-family: Arial;
+            font-size: 10pt;
+        }
+    </style>
+</head>
 <body>
-	<form action="/Quote/Index" method="post">
-		Company Symbol:
-		<br />
-		<br />
-		<input type="text" name="Symbol">
-		<br>
-		<br>
-		<input type="submit" value="GetCompanyQuote">
-	</form>
+    <div>
+        <p>
+            For knowing the latest quote of the individual company share price please provide the trading symbol of the company. You can find out company's trading symbol <a href="@Url.Action("Companies", "Home")" class="elements"><b><u>here</u></b></a>
+            <p>You can keep yourself updated by knowing</p>
+            <li>Opening price of the stock</li>
+            <li>Closing price of the stock</li>
+            <li>Previous day closing price</li>
+            <li>Market Capitaliaztion of the company</li>
+        </p>
+    </div><br />
+          <form action="/Quote/Index" method="post">
+              <b>Company Symbol:</b>
+              <br />
+              <br />
+              <input type="text" name="Symbol">
+              <br>
+              <br>
+              <div class="form-group">
+                  <div class="col-md-offset-1">
+                    <input type="submit" class="btn btn-primary" value= "Get Quote"/>
+                  </div>
+              </div>
+          </form>
 </body>
 </html>

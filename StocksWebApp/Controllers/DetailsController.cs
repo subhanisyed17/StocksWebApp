@@ -44,7 +44,13 @@ namespace StocksWebApp.Controllers
 		{
 			inputSymbol = Convert.ToString(TempData["value"]);
 			detailsOfCompany = GetCompanyDetails(inputSymbol);
-			_repository.SaveCompanyDetails(detailsOfCompany);
+            if (detailsOfCompany.Symbol == null)
+            {
+                ViewBag.IsModelEmpty = true;
+            }
+            else
+                ViewBag.IsModelEmpty = false;
+            _repository.SaveCompanyDetails(detailsOfCompany);
 			return View(detailsOfCompany);
 		}
 

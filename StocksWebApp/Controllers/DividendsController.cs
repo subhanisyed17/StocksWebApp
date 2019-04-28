@@ -49,7 +49,7 @@ namespace StocksWebApp.Controllers
 		private List<CompanyDividend> GetCompanyDividend(string symbol)
 		{
 			List<CompanyDividend> cDividends = new List<CompanyDividend>();
-			string CompanyDividends_End_Point = BASE_URL + "stock/" + symbol + "/dividends/1y";
+			string CompanyDividends_End_Point = BASE_URL + "stock/" + symbol + "/dividends/2y";
 			string apiResponse = string.Empty;
 			httpClient.BaseAddress = new Uri(CompanyDividends_End_Point);
 			HttpResponseMessage response = httpClient.GetAsync(CompanyDividends_End_Point).GetAwaiter().GetResult();

@@ -30,12 +30,23 @@ namespace StocksWebApp.Controllers
 				System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
 		}
 
-		public IActionResult Companies()
+		public IActionResult Companies(string searchBy, string search)
 		{
 			List<Company> allCompanies = GetAllCompanies();
 			bool areNewRcordsInserted = _repository.SaveCompanies(allCompanies);
-			return View(allCompanies);
-		}
+            if (searchBy==null)
+            {
+                return View(allCompanies);
+            }
+            else if(searchBy.Equals("Symbol", StringComparison.OrdinalIgnoreCase))
+            {
+                return View(allCompanies.Where(x => x.Symbol.Equals(search, StringComparison.OrdinalIgnoreCase) || search == null).ToList());
+            }
+            else
+            {
+                return View(allCompanies.Where(x => x.Name.StartsWith(search, StringComparison.OrdinalIgnoreCase) || search == null).ToList());
+            }
+        }
 
 		private List<Company> GetAllCompanies()
 		{

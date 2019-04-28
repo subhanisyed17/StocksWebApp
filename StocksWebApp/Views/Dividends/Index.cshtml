@@ -1,20 +1,42 @@
 ﻿@{
-	ViewData["Title"] = "Index";
+    ViewData["Title"] = "CompanyDividends";
 }
 @{
-	Layout = "_Layout";
+    Layout = "_Layout";
 }
 <!DOCTYPE html>
 <html>
+<head>
+    <style type="text/css">
+        body {
+            font-family: Arial;
+            font-size: 10pt;
+        }
+    </style>
+</head>
 <body>
-	<form action="/Dividends/Index" method="post">
-		Company Symbol:
-		<br />
-		<br />
-		<input type="text" name="Symbol">
-		<br>
-		<br>
-		<input type="submit" value="GetCompanyDividends">
-	</form>
+    <div>
+        <p>
+            You can find out the dividends of the companies for each quarter over a period of last 2 years by providing company trading symbol. For company's trading symbol check <a href="@Url.Action("Companies", "Home")" class="elements"><b><u>here</u></b></a>
+            <p>You can get to know about</p>
+            <li>When is the dividend declared for each quarter</li>
+            <li>What is the dividend type (Income, Retained earnings, Property dividend etc.,)</li>
+            <li>Dividend amount for each share</li>
+            <li>When is the payment date for dividend announced</li>
+        </p>
+    </div><br />
+    <form action="/Dividends/Index" method="post">
+        <b>Company Symbol:</b>
+        <br />
+        <br />
+        <input type="text" name="Symbol">
+        <br>
+        <br>
+        <div class="form-group">
+            <div class="col-md-offset-1">
+                <input type="submit" class="btn btn-primary" value="Get Dividend Info" />
+            </div>
+        </div>
+    </form>
 </body>
 </html>

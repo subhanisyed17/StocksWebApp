@@ -1,5 +1,5 @@
 ﻿@{
-	ViewData["Title"] = "GetCompanyDividend";
+	ViewData["Title"] = "CompanyDividends";
 }
 
 @model IEnumerable<StocksWebApp.Models.CompanyDividend>
@@ -44,25 +44,34 @@
 </head>
 <body>
 	<div>
-		<h4>Dividends of Company Over Last 1 Year</h4>
+		<h4>Dividends of Company Over Last 2 Years</h4>
 		<hr />
-		<table cellpadding="0" cellspacing="0">
-			<tr>
-				<th>DeclaredDate</th>
-				<th>TypeOfDividend</th>
-				<th>DividendAmount</th>
-				<th>PaymentDate</th>
-			</tr>
-			@foreach (CompanyDividend companyDividend in Model)
-			{
-			<tr>
-				<td>@companyDividend.DeclaredDate</td>
-				<td>@companyDividend.Type</td>
-				<td>@companyDividend.Amount</td>
-				<td>@companyDividend.PaymentDate</td>
-			</tr>
-			}
-		</table>
+        <table cellpadding="0" cellspacing="0">
+            <tr>
+                <th>DeclaredDate</th>
+                <th>TypeOfDividend</th>
+                <th>DividendAmount</th>
+                <th>PaymentDate</th>
+            </tr>
+            @if (Model.Count() == 0)
+            {
+                <tr>
+                    <td colspan="4">Dividend details of the company is not found</td>
+                </tr>
+            }
+            else
+            {
+                foreach (CompanyDividend companyDividend in Model)
+                {
+                    <tr>
+                        <td>@companyDividend.DeclaredDate</td>
+                        <td>@companyDividend.Type</td>
+                        <td>@companyDividend.Amount</td>
+                        <td>@companyDividend.PaymentDate</td>
+                    </tr>
+                }
+            }
+            </table>
 		<br />
 		<tr>
 
